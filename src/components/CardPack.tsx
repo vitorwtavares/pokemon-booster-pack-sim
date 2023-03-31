@@ -1,12 +1,20 @@
 import { Flex } from '@chakra-ui/react'
-import { CARDS_PER_PACK } from '../utils/constants'
 import Card from './Card'
 
-const CardPack = () => {
+interface CardPackProps {
+  cards?: string[]
+}
+
+const CardPack = ({ cards }: CardPackProps) => {
   return (
-    <Flex w="100%" justify="space-between" wrap="wrap">
-      {['0', '1', '2'].map(card => (
-        <Card card={card} />
+    <Flex
+      w="100%"
+      justify="space-between"
+      flexDirection={{ base: 'column', lg: 'row' }}
+      gap="20px"
+    >
+      {cards?.map(card => (
+        <Card card={card} key={card} />
       ))}
     </Flex>
   )

@@ -7,7 +7,7 @@ interface CardProps {
 }
 
 const Card = ({ card }: CardProps) => {
-  return <Image src={cardBack} mb="48px" height="400px" />
+  return <Image src={card ? card : cardBack} mx="auto" maxHeight="400px" />
 }
 
 export default Card

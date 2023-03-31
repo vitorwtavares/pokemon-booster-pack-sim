@@ -4,6 +4,7 @@ import { HEADER_HEIGHT } from './utils/constants'
 
 export const PageWrapper = styled(Flex)`
   width: 100%;
+  gap: 50px;
   max-width: 1024px;
   height: calc(100vh - ${HEADER_HEIGHT});
   margin: 0 auto;
@@ -12,6 +13,10 @@ export const PageWrapper = styled(Flex)`
   align-items: center;
   justify-content: center;
   padding: 0;
+
+  @media only screen and (max-width: 991px) {
+    height: 100%;
+  }
 `
 
 export const GetCardsButton = styled(Button)`

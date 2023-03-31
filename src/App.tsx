@@ -1,16 +1,22 @@
+import { useState } from 'react'
+
 import { CardPack } from './components'
+import { CARDS_PER_PACK } from './utils/constants'
 
 import * as S from './App.styles'
 
-function App() {
+const App = () => {
+  const [cards, setCards] = useState<string[]>(
+    Array(CARDS_PER_PACK).fill(undefined)
+  )
   const handleClick = async () => {
-    console.log('card')
+    console.log('click')
   }
 
   return (
     <S.PageWrapper>
-      <CardPack />
-      <S.GetCardsButton onClick={handleClick}>Get new card</S.GetCardsButton>
+      <S.GetCardsButton onClick={handleClick}>Open pack</S.GetCardsButton>
+      <CardPack cards={cards} />
     </S.PageWrapper>
   )
 }
