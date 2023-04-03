@@ -17,7 +17,9 @@ const Card = ({ card, isCardFlipped }: CardProps) => {
         card?.images && isCardFlipped ? 'rotateY(180deg)' : 'rotateY(0deg)'
       }
     >
-      {card?.rarity?.toLowerCase()?.includes('holo') && <p>holo</p>}
+      {isCardFlipped && card?.rarity?.toLowerCase()?.includes('holo') && (
+        <S.HoloFilter />
+      )}
       <S.CardBack>
         <Image draggable={false} src={cardBack} maxH="400px" />
       </S.CardBack>
