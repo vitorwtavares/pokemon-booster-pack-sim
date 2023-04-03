@@ -1,3 +1,3 @@
-export { default as Card } from './Card'
-export { default as CardPack } from './CardPack'
-export { default as Header } from './Header'
+export * from './Card'
+export * from './CardPack'
+export * from './Header'

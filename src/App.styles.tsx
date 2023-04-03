@@ -20,7 +20,6 @@ export const PageWrapper = styled(Flex)`
 `
 
 export const GetCardsButton = styled(Button)`
-  display: block;
   width: 300px;
   color: white;
   transition: 0.6s;

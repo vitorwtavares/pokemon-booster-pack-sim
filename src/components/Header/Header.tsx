@@ -1,9 +1,12 @@
-import { Box, Image } from '@chakra-ui/react'
-import { getBoosterSetById } from '../services/requests'
 import { useEffect, useState } from 'react'
+import { Box, Image } from '@chakra-ui/react'
 import styled from '@emotion/styled'
-import { BOOSTER_SET_SELECTED, HEADER_HEIGHT } from '../utils/constants'
-import fallbackLogo from '../assets/fallback-logo.png'
+
+import { getBoosterSetById } from '~/services/requests'
+
+import { BOOSTER_SET_SELECTED, HEADER_HEIGHT } from '~/utils/constants'
+
+import fallbackLogo from '~/assets/fallback-logo.png'
 
 export const HeaderContainer = styled(Box)`
   width: 100%;
@@ -15,7 +18,6 @@ export const HeaderContainer = styled(Box)`
 
 const Header = () => {
   const [logo, setLogo] = useState<string | undefined>()
-
   const getLogo = async () => {
     const { data } = await getBoosterSetById(BOOSTER_SET_SELECTED)
     setLogo(data.images.logo)
