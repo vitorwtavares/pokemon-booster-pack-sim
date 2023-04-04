@@ -1,6 +1,78 @@
 import { Button, Flex } from '@chakra-ui/react'
+import { css } from '@emotion/react'
 import styled from '@emotion/styled'
 import { HEADER_HEIGHT } from './utils/constants'
+
+const OpenPackButtonVariablesAndAnimations = css`
+  --red: #f80e35;
+  --yellow: #eedf10;
+  --green: #21e985;
+  --blue: #0dbde9;
+  --violet: #c929f1;
+
+  @keyframes animatedBackground {
+    0% {
+      background-image: repeating-linear-gradient(
+        120deg,
+        var(--yellow),
+        var(--red),
+        var(--violet),
+        var(--blue),
+        var(--green)
+      );
+    }
+    20% {
+      background-image: repeating-linear-gradient(
+        120deg,
+        var(--red),
+        var(--violet),
+        var(--blue),
+        var(--green),
+        var(--yellow)
+      );
+    }
+    40% {
+      background-image: repeating-linear-gradient(
+        120deg,
+        var(--violet),
+        var(--blue),
+        var(--green),
+        var(--yellow),
+        var(--red)
+      );
+    }
+    60% {
+      background-image: repeating-linear-gradient(
+        120deg,
+        var(--blue),
+        var(--green),
+        var(--yellow),
+        var(--red),
+        var(--violet)
+      );
+    }
+    80% {
+      background-image: repeating-linear-gradient(
+        120deg,
+        var(--green),
+        var(--yellow),
+        var(--red),
+        var(--violet),
+        var(--blue)
+      );
+    }
+    100% {
+      background-image: repeating-linear-gradient(
+        120deg,
+        var(--yellow),
+        var(--red),
+        var(--violet),
+        var(--blue),
+        var(--green)
+      );
+    }
+  }
+`
 
 export const PageWrapper = styled(Flex)`
   width: 100%;
@@ -19,13 +91,24 @@ export const PageWrapper = styled(Flex)`
   }
 `
 
-export const GetCardsButton = styled(Button)`
+export const OpenPackButton = styled(Button)`
+  ${OpenPackButtonVariablesAndAnimations}
+
   width: 300px;
-  color: white;
-  transition: 0.6s;
-  background-color: #e01c2f;
+  color: #fff;
+
+  background-image: repeating-linear-gradient(
+    120deg,
+    var(--yellow),
+    var(--red),
+    var(--violet),
+    var(--blue),
+    var(--green)
+  );
+  filter: saturate(90%);
 
   :hover {
-    background-color: #fbc32c;
+    filter: saturate(100%);
+    animation: animatedBackground 0.5s linear infinite;
   }
 `

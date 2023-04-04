@@ -32,9 +32,9 @@ const App = () => {
 
   return (
     <S.PageWrapper>
-      <S.GetCardsButton onClick={handleClick} isLoading={isLoading}>
+      <S.OpenPackButton onClick={handleClick} isLoading={isLoading}>
         {isCardFlipped ? 'Open another pack' : 'Open pack'}
-      </S.GetCardsButton>
+      </S.OpenPackButton>
       <CardPack cards={cards} isCardFlipped={isCardFlipped} />
     </S.PageWrapper>
   )
