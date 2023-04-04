@@ -7,6 +7,10 @@ const cardSideStyles = css`
   width: 100%;
   height: 100%;
   backface-visibility: hidden;
+
+  img {
+    border-radius: 15px;
+  }
 `
 
 export const CardContainer = styled(Flex)`
@@ -25,20 +29,4 @@ export const CardBack = styled(Flex)`
 export const CardFront = styled(Flex)`
   ${cardSideStyles}
   transform: rotateY(180deg);
-`
-
-export const HoloFilter = styled(Flex)`
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  z-index: 1;
-  border-radius: 15px;
-  background-image: linear-gradient(
-    to right,
-    rgb(194, 255, 182),
-    rgb(255, 163, 182),
-    rgb(221, 169, 255),
-    rgb(162, 209, 255)
-  );
-  opacity: 0.7;
 `

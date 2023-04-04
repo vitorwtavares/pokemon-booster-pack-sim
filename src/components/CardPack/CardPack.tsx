@@ -13,7 +13,8 @@ const CardPack = ({ cards, isCardFlipped }: CardPackProps) => {
       w="100%"
       justify="space-between"
       flexDirection={{ base: 'column', lg: 'row' }}
-      gap="20px"
+      columnGap="20px"
+      rowGap="50px"
     >
       {cards?.map((card, index) => (
         <Card

@@ -1,5 +1,5 @@
 import { Image } from '@chakra-ui/react'
-import { useState } from 'react'
+import Tilt from 'react-parallax-tilt'
 
 import cardBack from '~/assets/card-back.png'
 
@@ -17,18 +17,24 @@ const Card = ({ card, isCardFlipped }: CardProps) => {
         card?.images && isCardFlipped ? 'rotateY(180deg)' : 'rotateY(0deg)'
       }
     >
-      {isCardFlipped && card?.rarity?.toLowerCase()?.includes('holo') && (
-        <S.HoloFilter />
-      )}
       <S.CardBack>
         <Image draggable={false} src={cardBack} maxH="400px" />
       </S.CardBack>
       <S.CardFront>
-        <Image
-          draggable={false}
-          src={card?.images && card?.images?.large}
-          maxH="400px"
-        />
+        <Tilt
+          glareEnable={true}
+          glareMaxOpacity={0.3}
+          glareColor="white"
+          glarePosition="all"
+          glareBorderRadius="15px"
+          scale={1.15}
+        >
+          <Image
+            draggable={false}
+            src={card?.images && card?.images?.large}
+            maxH="400px"
+          />
+        </Tilt>
       </S.CardFront>
     </S.CardContainer>
   )
