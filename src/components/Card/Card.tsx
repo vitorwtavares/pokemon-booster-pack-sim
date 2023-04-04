@@ -1,4 +1,3 @@
-import { Image } from '@chakra-ui/react'
 import Tilt from 'react-parallax-tilt'
 
 import cardBack from '~/assets/card-back.png'
@@ -11,14 +10,12 @@ interface CardProps {
 }
 
 const Card = ({ card, isCardFlipped }: CardProps) => {
+  const shouldCardBeFlipped = card?.images && isCardFlipped
+
   return (
-    <S.CardContainer
-      transform={
-        card?.images && isCardFlipped ? 'rotateY(180deg)' : 'rotateY(0deg)'
-      }
-    >
+    <S.CardContainer shouldCardBeFlipped={shouldCardBeFlipped}>
       <S.CardBack>
-        <Image draggable={false} src={cardBack} maxH="400px" />
+        <S.CardImage draggable={false} src={cardBack} />
       </S.CardBack>
       <S.CardFront>
         <Tilt
@@ -29,10 +26,9 @@ const Card = ({ card, isCardFlipped }: CardProps) => {
           glareBorderRadius="15px"
           scale={1.15}
         >
-          <Image
+          <S.CardImage
             draggable={false}
             src={card?.images && card?.images?.large}
-            maxH="400px"
           />
         </Tilt>
       </S.CardFront>

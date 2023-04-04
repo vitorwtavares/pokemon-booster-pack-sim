@@ -1,6 +1,6 @@
-import { Flex } from '@chakra-ui/react'
-
 import { Card } from '~/components'
+
+import * as S from './CardPack.styles'
 
 interface CardPackProps {
   cards?: Array<any>
@@ -9,13 +9,7 @@ interface CardPackProps {
 
 const CardPack = ({ cards, isCardFlipped }: CardPackProps) => {
   return (
-    <Flex
-      w="100%"
-      justify="space-between"
-      flexDirection={{ base: 'column', lg: 'row' }}
-      columnGap="20px"
-      rowGap="50px"
-    >
+    <S.CardPackContainer flexDirection={{ base: 'column', lg: 'row' }}>
       {cards?.map((card, index) => (
         <Card
           card={card}
@@ -23,7 +17,7 @@ const CardPack = ({ cards, isCardFlipped }: CardPackProps) => {
           isCardFlipped={isCardFlipped}
         />
       ))}
-    </Flex>
+    </S.CardPackContainer>
   )
 }
 

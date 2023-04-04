@@ -2,9 +2,9 @@ import { useState } from 'react'
 
 import { CardPack } from '~/components'
 
-import { getCardsBySetId } from '~/services/requests'
+import { getCardsByPackId } from '~/services/requests'
 
-import { CARDS_PER_PACK, BOOSTER_SET_SELECTED } from '~/utils/constants'
+import { CARDS_PER_PACK, BOOSTER_PACK_SELECTED } from '~/utils/constants'
 import { getMultipleRandom } from '~/utils/getMultipleRandom'
 
 import * as S from '~/App.styles'
@@ -19,7 +19,7 @@ const App = () => {
 
     setIsLoading(true)
 
-    const { data } = await getCardsBySetId(BOOSTER_SET_SELECTED)
+    const { data } = await getCardsByPackId(BOOSTER_PACK_SELECTED)
     const randomCards = getMultipleRandom(data, 3)
 
     setCards(randomCards)

@@ -1,36 +1,33 @@
 import { useEffect, useState } from 'react'
-import { Box, Image } from '@chakra-ui/react'
-import styled from '@emotion/styled'
 
-import { getBoosterSetById } from '~/services/requests'
-
-import { BOOSTER_SET_SELECTED, HEADER_HEIGHT } from '~/utils/constants'
-
+import { getBoosterPackById } from '~/services/requests'
+import { BOOSTER_PACK_SELECTED } from '~/utils/constants'
 import fallbackLogo from '~/assets/fallback-logo.png'
 
-export const HeaderContainer = styled(Box)`
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  height: ${HEADER_HEIGHT};
-  padding: 12px 0;
-`
+import * as S from './Header.styles'
+import { getCachedPackLogos, setCachedPackLogos } from '~/utils/cachePackLogos'
 
 const Header = () => {
   const [logo, setLogo] = useState<string | undefined>()
+
   const getLogo = async () => {
-    const { data } = await getBoosterSetById(BOOSTER_SET_SELECTED)
+    const hasCachedLogo = getCachedPackLogos(BOOSTER_PACK_SELECTED, setLogo)
+    if (hasCachedLogo) return
+
+    const { data } = await getBoosterPackById(BOOSTER_PACK_SELECTED)
     setLogo(data.images.logo)
+
+    setCachedPackLogos(data)
   }
 
   useEffect(() => {
     getLogo()
-  }, [])
+  }, [BOOSTER_PACK_SELECTED])
 
   return (
-    <HeaderContainer>
-      <Image src={logo || fallbackLogo} height="100%" />
-    </HeaderContainer>
+    <S.HeaderContainer>
+      <S.HeaderImage src={logo || fallbackLogo} />
+    </S.HeaderContainer>
   )
 }
 
