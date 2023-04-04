@@ -4,9 +4,13 @@ import styled from '@emotion/styled'
 
 const cardSideStyles = css`
   position: absolute;
-  height: 100%;
   width: 100%;
+  height: 100%;
   backface-visibility: hidden;
+
+  img {
+    border-radius: 15px;
+  }
 `
 
 export const CardContainer = styled(Flex)`
@@ -14,7 +18,7 @@ export const CardContainer = styled(Flex)`
   position: relative;
   transform-style: preserve-3d;
   transition: all 1s ease;
-  width: 100%;
+  width: 288px;
   height: 400px;
 `
 
