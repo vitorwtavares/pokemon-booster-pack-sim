@@ -24,8 +24,7 @@ const Header = () => {
   }
 
   useEffect(() => {
-    // TODO: REMOVE COMMENT, COMMENTED TO AVOID REQUESTS
-    // getLogo()
+    getLogo()
   }, [])
 
   return (
