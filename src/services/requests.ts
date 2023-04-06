@@ -1,6 +1,8 @@
 import client from '~/providers/fetchClient'
+import { BuildQueryParams, buildQueryParams } from '~/utils/buildQueryParams'
 
-export const getBoosterPackById = (id: string) => client.get(`sets/${id}`)
+export const getBoosterPacks = (params?: BuildQueryParams) =>
+  client.get(buildQueryParams('sets', params))
 
-export const getCardsByPackId = (setId: string) =>
-  client.get(`cards?q=set.id:${setId}`)
+export const getCards = (params?: BuildQueryParams) =>
+  client.get(buildQueryParams('cards', params))

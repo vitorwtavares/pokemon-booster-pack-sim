@@ -12,6 +12,5 @@ export const HeaderContainer = styled(Box)`
 `
 
 export const HeaderImage = styled(Image)`
-  max-height: 80px;
-  height: 100%;
+  height: 60px;
 `

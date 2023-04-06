@@ -1,13 +1,18 @@
 import { useState } from 'react'
 
-import { CardPack } from '~/components'
+import { CardPack, Header, PackSelectorMenu } from '~/components'
 
-import { getCardsByPackId } from '~/services/requests'
+import { getCards } from '~/services/requests'
 
-import { CARDS_PER_PACK, BOOSTER_PACK_SELECTED } from '~/utils/constants'
-import { getMultipleRandom } from '~/utils/getMultipleRandom'
+import {
+  CARDS_PER_PACK,
+  SELECTED_BOOSTER_PACK,
+  SELECTED_BOOSTER_PACK_CARDS_AMOUNT
+} from '~/utils/constants'
+import { getRandomCardIds } from '~/utils/getRandomCardIds'
 
 import * as S from '~/App.styles'
+import { Flex } from '@chakra-ui/react'
 
 const App = () => {
   const [cards, setCards] = useState(Array(CARDS_PER_PACK).fill(undefined))
@@ -17,26 +22,40 @@ const App = () => {
   const handleClick = async () => {
     if (isCardFlipped) setIsCardFlipped(false)
 
-    setIsLoading(true)
+    try {
+      setIsLoading(true)
+      // TODO params for this will come from store based on selected pack
+      const randomIds = getRandomCardIds(
+        SELECTED_BOOSTER_PACK_CARDS_AMOUNT,
+        CARDS_PER_PACK
+      )
 
-    const { data } = await getCardsByPackId(BOOSTER_PACK_SELECTED)
-    const randomCards = getMultipleRandom(data, 3)
+      const { data } = await getCards({
+        q: `set.id:${SELECTED_BOOSTER_PACK}  ${randomIds}`
+      })
 
-    setCards(randomCards)
-
-    setTimeout(() => {
+      setCards(data)
+      setTimeout(() => setIsCardFlipped(true), 500)
+    } catch (err) {
+      console.log(err)
+    } finally {
       setIsLoading(false)
-      setIsCardFlipped(true)
-    }, 2000)
+    }
   }
 
   return (
-    <S.PageWrapper>
-      <S.OpenPackButton onClick={handleClick} isLoading={isLoading}>
-        {isCardFlipped ? 'Open another pack' : 'Open pack'}
-      </S.OpenPackButton>
-      <CardPack cards={cards} isCardFlipped={isCardFlipped} />
-    </S.PageWrapper>
+    <Flex>
+      <PackSelectorMenu />
+      <S.HeaderAndContentContainer>
+        <Header />
+        <S.ContentWrapper>
+          <S.OpenPackButton onClick={handleClick} isLoading={isLoading}>
+            {isCardFlipped ? 'Open another pack' : 'Open pack'}
+          </S.OpenPackButton>
+          <CardPack cards={cards} isCardFlipped={isCardFlipped} />
+        </S.ContentWrapper>
+      </S.HeaderAndContentContainer>
+    </Flex>
   )
 }
 

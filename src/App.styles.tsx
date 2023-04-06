@@ -74,7 +74,12 @@ const OpenPackButtonVariablesAndAnimations = css`
   }
 `
 
-export const PageWrapper = styled(Flex)`
+export const HeaderAndContentContainer = styled(Flex)`
+  flex-direction: column;
+  margin: 0 auto;
+`
+
+export const ContentWrapper = styled(Flex)`
   width: 100%;
   gap: 50px;
   max-width: 1024px;
