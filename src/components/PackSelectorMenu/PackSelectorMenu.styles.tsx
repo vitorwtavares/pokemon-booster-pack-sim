@@ -18,7 +18,7 @@ export const CustomSpinner = styled(Spinner)`
 `
 
 export const OuterContainer = styled(Flex)`
-  position: relative;
+  position: fixed;
   width: 200px;
   color: white;
   height: 100vh;
