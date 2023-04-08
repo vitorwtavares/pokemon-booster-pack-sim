@@ -1,7 +1,8 @@
-import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App'
 import { ChakraProvider, extendTheme } from '@chakra-ui/react'
+
+import { SelectedPackProvider } from '~/context/SelectedPack'
 
 const theme = extendTheme({
   styles: {
@@ -14,9 +15,9 @@ const theme = extendTheme({
 })
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
-  <React.StrictMode>
-    <ChakraProvider theme={theme}>
+  <ChakraProvider theme={theme}>
+    <SelectedPackProvider>
       <App />
-    </ChakraProvider>
-  </React.StrictMode>
+    </SelectedPackProvider>
+  </ChakraProvider>
 )

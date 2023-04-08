@@ -1,7 +1,7 @@
 export interface BuildQueryParams {
   q?: string
-  page?: string
-  pageSize?: string
+  page?: number
+  pageSize?: number
   orderBy?: string
   select?: string
 }
@@ -14,8 +14,8 @@ export const buildQueryParams = (url: string, params?: BuildQueryParams) => {
       const URLParams = new URLSearchParams()
 
       if (q && q !== '') URLParams.append('q', q)
-      if (page && page !== '') URLParams.append('page', page)
-      if (pageSize && pageSize !== '') URLParams.append('pageSize', pageSize)
+      if (page) URLParams.append('page', page.toString())
+      if (pageSize) URLParams.append('pageSize', pageSize.toString())
       if (orderBy && orderBy !== '') URLParams.append('orderBy', orderBy)
       if (select && select !== '') URLParams.append('select', select)
 
