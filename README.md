@@ -1,1 +1,1 @@
-# pokemon-booster-pack-sim
+## I REGRET TO INFORM I HAVE NOT MADE IT TO THE README YET
