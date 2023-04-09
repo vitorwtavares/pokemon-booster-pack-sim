@@ -1,4 +1,4 @@
-import { Flex, Image, Spinner } from '@chakra-ui/react'
+import { Flex, Spinner } from '@chakra-ui/react'
 import { css } from '@emotion/react'
 import styled from '@emotion/styled'
 import { HEADER_HEIGHT } from '~/utils/constants'
@@ -36,34 +36,4 @@ export const InnerContainer = styled(Flex)`
   overflow-x: hidden;
 
   ${scrollbarStyles}
-`
-export const LogoContainer = styled(Flex, {
-  shouldForwardProp: prop => prop !== 'isSelectedPack'
-})`
-  width: 100%;
-  height: 80px;
-  justify-content: center;
-  align-items: center;
-  padding: 15px 0;
-  transition: all 0.2s ease;
-  background-color: ${({ isSelectedPack }) =>
-    isSelectedPack && 'rgba(51, 51, 51, 0.3)'};
-
-  > img {
-    transform: ${({ isSelectedPack }) => isSelectedPack && 'scale(1.25);'};
-  }
-
-  :hover {
-    cursor: pointer;
-
-    > img {
-      transform: ${({ isSelectedPack }) => !isSelectedPack && 'scale(1.25)'};
-    }
-  }
-`
-
-export const PackLogo = styled(Image)`
-  height: 100%;
-  max-width: 110px;
-  object-fit: contain;
 `
