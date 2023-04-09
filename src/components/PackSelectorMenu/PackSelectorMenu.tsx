@@ -5,6 +5,7 @@ import { getBoosterPacks } from '~/services/requests'
 import { Pack } from '~/types/api'
 import { SelectedPackContext } from '~/context/SelectedPack'
 import { DEFAULT_PACKS_PAGE_SIZE } from '~/utils/constants'
+import { Tooltip } from '@chakra-ui/react'
 
 const PackSelectorMenu = () => {
   const { selectedPack, setSelectedPack } = useContext(SelectedPackContext)
@@ -49,15 +50,17 @@ const PackSelectorMenu = () => {
         packs && (
           <S.InnerContainer>
             {packs?.map((pack: Pack) => (
-              <S.LogoContainer
-                key={pack.id}
-                isSelectedPack={pack.id === selectedPack.id}
-                onClick={() =>
-                  setSelectedPack({ id: pack.id, total: pack.total })
-                }
-              >
-                <S.PackLogo src={pack.images.logo} />
-              </S.LogoContainer>
+              <Tooltip label={pack.name} placement="right">
+                <S.LogoContainer
+                  key={pack.id}
+                  isSelectedPack={pack.id === selectedPack.id}
+                  onClick={() =>
+                    setSelectedPack({ id: pack.id, total: pack.total })
+                  }
+                >
+                  <S.PackLogo src={pack.images.logo} />
+                </S.LogoContainer>
+              </Tooltip>
             ))}
           </S.InnerContainer>
         )
