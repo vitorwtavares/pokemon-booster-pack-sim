@@ -5,10 +5,10 @@ export const LogoContainer = styled(Flex, {
   shouldForwardProp: prop => prop !== 'isSelectedPack'
 })`
   width: 100%;
-  height: 80px;
+  height: 100px;
   justify-content: center;
   align-items: center;
-  padding: 15px 0;
+  padding: 25px 0;
   transition: all 0.2s ease;
   background-color: ${({ isSelectedPack }) =>
     isSelectedPack && 'rgba(51, 51, 51, 0.3)'};

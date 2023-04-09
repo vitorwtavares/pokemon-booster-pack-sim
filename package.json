@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@chakra-ui/icons": "^2.0.18",
     "@chakra-ui/react": "^2.5.3",
     "@emotion/react": "^11.10.6",
     "@emotion/styled": "^11.10.6",
@@ -16,7 +17,8 @@
     "framer-motion": "^10.9.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-parallax-tilt": "^1.7.122"
+    "react-parallax-tilt": "^1.7.122",
+    "react-waypoint": "^10.3.0"
   },
   "devDependencies": {
     "@types/node": "^18.15.9",

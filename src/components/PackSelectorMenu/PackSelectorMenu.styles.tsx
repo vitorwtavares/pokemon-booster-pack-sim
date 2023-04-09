@@ -1,4 +1,4 @@
-import { Flex, Spinner } from '@chakra-ui/react'
+import { Box, Flex, Spinner } from '@chakra-ui/react'
 import { css } from '@emotion/react'
 import styled from '@emotion/styled'
 import { HEADER_HEIGHT } from '~/utils/constants'
@@ -19,6 +19,7 @@ export const CustomSpinner = styled(Spinner)`
 
 export const OuterContainer = styled(Flex)`
   position: fixed;
+  flex-direction: column;
   width: 200px;
   color: white;
   height: 100vh;
@@ -36,4 +37,8 @@ export const InnerContainer = styled(Flex)`
   overflow-x: hidden;
 
   ${scrollbarStyles}
+`
+
+export const WaypointContainer = styled(Box)`
+  margin-top: 50px;
 `

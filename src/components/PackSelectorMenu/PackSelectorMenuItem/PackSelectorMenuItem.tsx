@@ -15,7 +15,6 @@ const PackSelectorMenuItem = ({ pack }: PackSelectorMenuItemProps) => {
   return (
     <Tooltip label={pack.name} placement="right">
       <S.LogoContainer
-        key={pack.id}
         isSelectedPack={pack.id === selectedPack.id}
         onClick={() => setSelectedPack({ id: pack.id, total: pack.total })}
       >
