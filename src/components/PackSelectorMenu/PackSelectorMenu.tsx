@@ -9,6 +9,7 @@ import { PackSelectorMenuItem } from './PackSelectorMenuItem'
 
 import * as S from './PackSelectorMenu.styles'
 import { AddIcon } from '@chakra-ui/icons'
+import { excludedPacksNamesList } from '~/utils/excludedPacksNamesList'
 
 const PackSelectorMenu = () => {
   const [isLoading, setIsLoading] = useState(false)
@@ -71,9 +72,11 @@ const PackSelectorMenu = () => {
     return (
       <S.OuterContainer>
         <S.InnerContainer>
-          {packs?.map((pack: Pack) => (
-            <PackSelectorMenuItem pack={pack} key={pack.id} />
-          ))}
+          {packs
+            ?.filter(p => !excludedPacksNamesList.includes(p.name))
+            ?.map((pack: Pack) => (
+              <PackSelectorMenuItem pack={pack} key={pack.id} />
+            ))}
           <S.WaypointContainer>
             <Waypoint onEnter={handleEnterWaypoint}>
               {isLoading ? <S.CustomSpinner /> : <AddIcon />}
