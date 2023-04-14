@@ -1,9 +1,12 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { Waypoint } from 'react-waypoint'
 
 import { getBoosterPacks } from '~/services/requests'
 import { Pack } from '~/types/api'
-import { DEFAULT_PACKS_PAGE_SIZE } from '~/utils/constants'
+import {
+  DEFAULT_PACKS_PAGE_SIZE,
+  DEFAULT_PACKS_LAST_PAGE
+} from '~/utils/constants'
 
 import { PackSelectorMenuItem } from './PackSelectorMenuItem'
 
@@ -15,6 +18,7 @@ const PackSelectorMenu = () => {
   const [isLoading, setIsLoading] = useState(false)
   const [packs, setPacks] = useState<Pack[]>([])
   const [page, setPage] = useState(1)
+  const shouldFetchMore = useMemo(() => page < DEFAULT_PACKS_LAST_PAGE, [page])
 
   const fetchInitialBoosterPacks = async () => {
     try {
@@ -77,11 +81,13 @@ const PackSelectorMenu = () => {
             ?.map((pack: Pack) => (
               <PackSelectorMenuItem pack={pack} key={pack.id} />
             ))}
-          <S.WaypointContainer>
-            <Waypoint onEnter={handleEnterWaypoint}>
-              {isLoading ? <S.CustomSpinner /> : <AddIcon />}
-            </Waypoint>
-          </S.WaypointContainer>
+          {shouldFetchMore && (
+            <S.WaypointContainer>
+              <Waypoint onEnter={handleEnterWaypoint}>
+                {isLoading ? <S.CustomSpinner /> : <AddIcon />}
+              </Waypoint>
+            </S.WaypointContainer>
+          )}
         </S.InnerContainer>
       </S.OuterContainer>
     )

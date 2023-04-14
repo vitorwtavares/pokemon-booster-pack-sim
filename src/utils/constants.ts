@@ -3,6 +3,12 @@ export const DEFAULT_SELECTED_BOOSTER_PACK_CARDS_AMOUNT = 102
 
 export const DEFAULT_PACKS_PAGE_SIZE = 6
 
+export const DEFAULT_PACKS_TOTAL = 151
+
+export const DEFAULT_PACKS_LAST_PAGE = Math.ceil(
+  DEFAULT_PACKS_TOTAL / DEFAULT_PACKS_PAGE_SIZE
+)
+
 export const CARDS_PER_PACK = 3
 
 export const HEADER_HEIGHT = '110px'
