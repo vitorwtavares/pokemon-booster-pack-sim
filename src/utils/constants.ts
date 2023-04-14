@@ -1,7 +1,7 @@
 export const DEFAULT_SELECTED_BOOSTER_PACK_ID = 'base1'
 export const DEFAULT_SELECTED_BOOSTER_PACK_CARDS_AMOUNT = 102
 
-export const DEFAULT_PACKS_PAGE_SIZE = 8
+export const DEFAULT_PACKS_PAGE_SIZE = 6
 
 export const CARDS_PER_PACK = 3
 

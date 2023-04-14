@@ -13,7 +13,7 @@ import { AddIcon } from '@chakra-ui/icons'
 const PackSelectorMenu = () => {
   const [isLoading, setIsLoading] = useState(false)
   const [packs, setPacks] = useState<Pack[]>([])
-  const [page, setPage] = useState(1) // TODO infinite scroll
+  const [page, setPage] = useState(1)
 
   const fetchInitialBoosterPacks = async () => {
     try {
@@ -56,7 +56,7 @@ const PackSelectorMenu = () => {
   }, [])
 
   useEffect(() => {
-    fetchMore()
+    if (page > 1) fetchMore()
   }, [page])
 
   if (isLoading && packs.length === 0) {

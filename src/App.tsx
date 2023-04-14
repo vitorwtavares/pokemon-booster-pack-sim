@@ -27,7 +27,7 @@ const App = () => {
       const randomIds = getRandomCardIds(selectedPack.total, CARDS_PER_PACK)
 
       const { data } = await getCards({
-        q: `set.id:${selectedPack.id}  ${randomIds}`
+        q: `set.id:${selectedPack.id} ${randomIds}`
       })
 
       setCards(data)
