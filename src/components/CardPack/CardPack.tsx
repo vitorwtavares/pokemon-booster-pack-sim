@@ -1,3 +1,4 @@
+import { FC } from 'react'
 import { Card } from '~/components'
 
 import * as S from './CardPack.styles'
@@ -7,7 +8,7 @@ interface CardPackProps {
   isCardFlipped: boolean
 }
 
-const CardPack = ({ cards, isCardFlipped }: CardPackProps) => {
+const CardPack: FC<CardPackProps> = ({ cards, isCardFlipped }) => {
   return (
     <S.CardPackContainer flexDirection={{ base: 'column', lg: 'row' }}>
       {cards?.map((card, index) => (

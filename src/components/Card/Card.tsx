@@ -1,3 +1,4 @@
+import { FC } from 'react'
 import Tilt from 'react-parallax-tilt'
 
 import cardBack from '~/assets/card-back.png'
@@ -9,7 +10,7 @@ interface CardProps {
   isCardFlipped: boolean
 }
 
-const Card = ({ card, isCardFlipped }: CardProps) => {
+const Card: FC<CardProps> = ({ card, isCardFlipped }) => {
   const shouldCardBeFlipped = card?.images && isCardFlipped
 
   return (

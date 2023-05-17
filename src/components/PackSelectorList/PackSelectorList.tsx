@@ -1,5 +1,6 @@
-import { useEffect, useMemo, useState } from 'react'
+import { FC, useEffect, useMemo, useState } from 'react'
 import { Waypoint } from 'react-waypoint'
+import { AddIcon } from '@chakra-ui/icons'
 
 import { getBoosterPacks } from '~/services/requests'
 import { Pack } from '~/types/api'
@@ -7,17 +8,21 @@ import {
   DEFAULT_PACKS_PAGE_SIZE,
   DEFAULT_PACKS_LAST_PAGE
 } from '~/utils/constants'
-
-import { PackSelectorMenuItem } from './PackSelectorMenuItem'
-
-import * as S from './PackSelectorMenu.styles'
-import { AddIcon } from '@chakra-ui/icons'
 import { excludedPacksNamesList } from '~/utils/excludedPacksNamesList'
 
-const PackSelectorMenu = () => {
+import { PackSelectorListItem } from './PackSelectorListItem'
+
+import * as S from './PackSelectorList.styles'
+
+interface PackSelectorListProps {
+  onClose: () => void
+}
+
+const PackSelectorList: FC<PackSelectorListProps> = ({ onClose }) => {
   const [isLoading, setIsLoading] = useState(false)
   const [packs, setPacks] = useState<Pack[]>([])
   const [page, setPage] = useState(1)
+
   const shouldFetchMore = useMemo(() => page < DEFAULT_PACKS_LAST_PAGE, [page])
 
   const fetchInitialBoosterPacks = async () => {
@@ -32,7 +37,7 @@ const PackSelectorMenu = () => {
     } catch (err) {
       console.log(err)
     } finally {
-      setIsLoading(false)
+      setTimeout(() => setIsLoading(false), 100)
     }
   }
 
@@ -53,6 +58,7 @@ const PackSelectorMenu = () => {
   }
 
   const handleEnterWaypoint = () => {
+    console.log('entered')
     setPage(page + 1)
   }
 
@@ -66,34 +72,32 @@ const PackSelectorMenu = () => {
 
   if (isLoading && packs.length === 0) {
     return (
-      <S.OuterContainer>
+      <S.SpinnerContainer>
         <S.CustomSpinner />
-      </S.OuterContainer>
+      </S.SpinnerContainer>
     )
   }
 
   if (packs.length > 1) {
     return (
-      <S.OuterContainer>
-        <S.InnerContainer>
-          {packs
-            ?.filter(p => !excludedPacksNamesList.includes(p.name))
-            ?.map((pack: Pack) => (
-              <PackSelectorMenuItem pack={pack} key={pack.id} />
-            ))}
-          {shouldFetchMore && (
-            <S.WaypointContainer>
-              <Waypoint onEnter={handleEnterWaypoint}>
-                {isLoading ? <S.CustomSpinner /> : <AddIcon />}
-              </Waypoint>
-            </S.WaypointContainer>
-          )}
-        </S.InnerContainer>
-      </S.OuterContainer>
+      <S.InnerContainer>
+        {packs
+          ?.filter(p => !excludedPacksNamesList.includes(p.name))
+          ?.map((pack: Pack) => (
+            <PackSelectorListItem pack={pack} key={pack.id} onClose={onClose} />
+          ))}
+        {!isLoading && shouldFetchMore && (
+          <S.WaypointContainer>
+            <Waypoint onEnter={handleEnterWaypoint}>
+              {isLoading ? <S.CustomSpinner /> : <AddIcon />}
+            </Waypoint>
+          </S.WaypointContainer>
+        )}
+      </S.InnerContainer>
     )
   }
 
   return null
 }
 
-export default PackSelectorMenu
+export default PackSelectorList

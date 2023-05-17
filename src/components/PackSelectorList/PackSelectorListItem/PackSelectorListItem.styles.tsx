@@ -9,9 +9,11 @@ export const LogoContainer = styled(Flex, {
   justify-content: center;
   align-items: center;
   padding: 25px 0;
-  transition: all 0.2s ease;
+  transition: all 0.1s ease;
   background-color: ${({ isSelectedPack }) =>
     isSelectedPack && 'rgba(51, 51, 51, 0.3)'};
+  border-left: ${({ isSelectedPack }) => isSelectedPack && '5px solid white'};
+  border-radius: 2px;
 
   > img {
     transform: ${({ isSelectedPack }) => isSelectedPack && 'scale(1.25);'};

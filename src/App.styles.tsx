@@ -1,7 +1,7 @@
 import { Button, Flex } from '@chakra-ui/react'
 import { css } from '@emotion/react'
 import styled from '@emotion/styled'
-import { HEADER_HEIGHT } from './utils/constants'
+import { DESKTOP_HEADER_HEIGHT } from './utils/constants'
 
 const OpenPackButtonVariablesAndAnimations = css`
   --red: #f80e35;
@@ -76,6 +76,7 @@ const OpenPackButtonVariablesAndAnimations = css`
 
 export const HeaderAndContentContainer = styled(Flex)`
   flex-direction: column;
+  max-width: 1920px;
   margin: 0 auto;
 `
 
@@ -83,7 +84,7 @@ export const ContentWrapper = styled(Flex)`
   width: 100%;
   gap: 50px;
   max-width: 1024px;
-  height: calc(100vh - ${HEADER_HEIGHT});
+  height: calc(100vh - ${DESKTOP_HEADER_HEIGHT});
   margin: 0 auto;
   display: flex;
   flex-direction: column;
