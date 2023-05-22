@@ -1,4 +1,4 @@
-import { Box, Button, Image } from '@chakra-ui/react'
+import { Box, Button, Image, Input } from '@chakra-ui/react'
 import styled from '@emotion/styled'
 
 import { DESKTOP_HEADER_HEIGHT } from '~/utils/constants'
@@ -40,4 +40,8 @@ export const SelectBoosterPackButton = styled(Button)`
     margin: auto;
     width: 300px;
   }
+`
+
+export const CustomInput = styled(Input)`
+  margin-bottom: 15px;
 `
