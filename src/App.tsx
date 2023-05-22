@@ -1,6 +1,6 @@
 import { useState, useContext } from 'react'
 
-import { CardPack, Header } from '~/components'
+import { CardPack, Header, Credits } from '~/components'
 
 import { getCards } from '~/services/requests'
 import { SelectedPackContext } from '~/context/SelectedPack'
@@ -9,7 +9,6 @@ import { CARDS_PER_PACK } from '~/utils/constants'
 import { getRandomCardIds } from '~/utils/getRandomCardIds'
 
 import * as S from '~/App.styles'
-import { Flex } from '@chakra-ui/react'
 
 const App = () => {
   const { selectedPack } = useContext(SelectedPackContext)
@@ -49,6 +48,7 @@ const App = () => {
           {isCardFlipped ? 'Open another pack' : 'Open pack'}
         </S.OpenPackButton>
         <CardPack cards={cards} isCardFlipped={isCardFlipped} />
+        <Credits />
       </S.ContentWrapper>
     </S.HeaderAndContentContainer>
   )
