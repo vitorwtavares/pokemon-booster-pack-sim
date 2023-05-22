@@ -3,7 +3,7 @@ import { excludedPacksNamesList } from './excludedPacksNamesList'
 export const DEFAULT_SELECTED_BOOSTER_PACK_ID = 'base1'
 export const DEFAULT_SELECTED_BOOSTER_PACK_CARDS_AMOUNT = 102
 
-export const DEFAULT_PACKS_PAGE_SIZE = 9
+export const DEFAULT_PACKS_PAGE_SIZE = 10
 
 export const DEFAULT_PACKS_TOTAL = 151 - excludedPacksNamesList.length
 
