@@ -10,7 +10,7 @@ interface CardPackProps {
 
 const CardPack: FC<CardPackProps> = ({ cards, isCardFlipped }) => {
   return (
-    <S.CardPackContainer flexDirection={{ base: 'column', lg: 'row' }}>
+    <S.CardPackContainer>
       {cards?.map((card, index) => (
         <Card
           card={card}

@@ -117,4 +117,8 @@ export const OpenPackButton = styled(Button)`
     filter: saturate(100%);
     animation: animatedBackground 0.5s linear infinite;
   }
+
+  @media only screen and (max-width: 991px) {
+    margin-top: 30px;
+  }
 `

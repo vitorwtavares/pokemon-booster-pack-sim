@@ -9,6 +9,7 @@ import { CARDS_PER_PACK } from '~/utils/constants'
 import { getRandomCardIds } from '~/utils/getRandomCardIds'
 
 import * as S from '~/App.styles'
+import { Flex } from '@chakra-ui/react'
 
 const App = () => {
   const { selectedPack } = useContext(SelectedPackContext)
@@ -30,10 +31,12 @@ const App = () => {
       })
 
       setCards(data)
-      setTimeout(() => setIsCardFlipped(true), 500)
+      setTimeout(() => {
+        setIsCardFlipped(true)
+        setIsLoading(false)
+      }, 500)
     } catch (err) {
       console.log(err)
-    } finally {
       setIsLoading(false)
     }
   }

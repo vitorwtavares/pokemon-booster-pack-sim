@@ -24,7 +24,7 @@ export const HeaderContainer = styled(Box)`
 `
 
 export const HeaderImage = styled(Image)`
-  height: 60px;
+  height: 50px;
   grid-area: logo;
   margin: 0 auto;
 `

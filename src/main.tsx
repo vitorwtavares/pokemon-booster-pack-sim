@@ -9,7 +9,7 @@ const theme = extendTheme({
     global: {
       body: {
         backgroundColor: '#222',
-        overflowY: 'hidden'
+        overflowY: { lg: 'hidden' }
       }
     }
   }
