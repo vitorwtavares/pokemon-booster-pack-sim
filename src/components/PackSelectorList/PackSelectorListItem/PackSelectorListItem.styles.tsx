@@ -6,9 +6,10 @@ export const LogoContainer = styled(Flex, {
 })`
   width: 100%;
   height: 100px;
+  min-height: 100px;
   justify-content: center;
   align-items: center;
-  padding: 25px 0;
+  padding: 15px 0;
   transition: all 0.1s ease;
   background-color: ${({ isSelectedPack }) =>
     isSelectedPack && 'rgba(51, 51, 51, 0.3)'};
