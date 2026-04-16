@@ -1,54 +1,54 @@
 import {
-  Modal,
-  ModalOverlay,
-  ModalContent,
-  ModalHeader,
-  ModalBody,
-  ModalCloseButton,
+  Dialog,
+  CloseButton,
   useDisclosure,
   Link,
-  UnorderedList,
-  ListItem
+  ListItem,
+  List
 } from '@chakra-ui/react'
 
 import * as S from './Credits.styles'
 
-const Header = () => {
-  const { isOpen, onOpen, onClose } = useDisclosure()
+const Credits = () => {
+  const { open, onOpen, onClose } = useDisclosure()
 
   return (
     <>
-      <S.CreditsButton variant="link" onClick={onOpen}>
+      <S.CreditsButton variant="plain" onClick={onOpen}>
         Credits
       </S.CreditsButton>
 
-      <Modal isOpen={isOpen} onClose={onClose}>
-        <ModalOverlay />
-        <ModalContent>
-          <ModalHeader>Credits</ModalHeader>
-          <ModalCloseButton />
-          <ModalBody>
-            <UnorderedList mb="40px">
-              <ListItem>
-                API by{' '}
-                <Link href="https://pokemontcg.io/">
-                  https://pokemontcg.io/
-                </Link>
-              </ListItem>
-              <ListItem>
-                This website is not produced, endorsed, supported, or affiliated
-                with Nintendo or The Pokémon Company.
-              </ListItem>
-            </UnorderedList>
-            Copyright © 2023{' '}
-            <Link href="https://github.com/vitorwtavares" target="_blank">
-              Vítor Tavares
-            </Link>
-          </ModalBody>
-        </ModalContent>
-      </Modal>
+      <Dialog.Root open={open} onOpenChange={e => !e.open && onClose()}>
+        <Dialog.Backdrop />
+        <Dialog.Positioner>
+          <Dialog.Content>
+            <Dialog.Header>Credits</Dialog.Header>
+            <Dialog.CloseTrigger asChild position="absolute" top="2" right="2">
+              <CloseButton />
+            </Dialog.CloseTrigger>
+            <Dialog.Body>
+              <List.Root mb="40px">
+                <List.Item>
+                  API by{' '}
+                  <Link href="https://pokemontcg.io/">
+                    https://pokemontcg.io/
+                  </Link>
+                </List.Item>
+                <List.Item>
+                  This website is not produced, endorsed, supported, or affiliated
+                  with Nintendo or The Pokémon Company.
+                </List.Item>
+              </List.Root>
+              Copyright © 2023{' '}
+              <Link href="https://github.com/vitorwtavares" target="_blank">
+                Vítor Tavares
+              </Link>
+            </Dialog.Body>
+          </Dialog.Content>
+        </Dialog.Positioner>
+      </Dialog.Root>
     </>
   )
 }
 
-export default Header
+export default Credits

@@ -44,7 +44,7 @@ const App = () => {
     <S.HeaderAndContentContainer>
       <Header />
       <S.ContentWrapper>
-        <S.OpenPackButton onClick={handleClick} isLoading={isLoading}>
+        <S.OpenPackButton onClick={handleClick} loading={isLoading}>
           {isCardFlipped ? 'Open another pack' : 'Open pack'}
         </S.OpenPackButton>
         <CardPack cards={cards} isCardFlipped={isCardFlipped} />

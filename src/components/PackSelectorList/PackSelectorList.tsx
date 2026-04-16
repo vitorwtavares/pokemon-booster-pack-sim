@@ -1,6 +1,6 @@
 import { FC, useCallback, useEffect, useMemo, useState } from 'react'
+import { Plus } from 'lucide-react'
 import { Waypoint } from 'react-waypoint'
-import { AddIcon } from '@chakra-ui/icons'
 
 import { getBoosterPacks } from '~/services/requests'
 import { Pack } from '~/types/api'
@@ -92,7 +92,7 @@ const PackSelectorList: FC<PackSelectorListProps> = ({
         {!isLoading && shouldFetchMore && (
           <S.WaypointContainer>
             <Waypoint onEnter={handleEnterWaypoint}>
-              {isLoading ? <S.CustomSpinner /> : <AddIcon />}
+              {isLoading ? <S.CustomSpinner /> : <Plus size={16} />}
             </Waypoint>
           </S.WaypointContainer>
         )}

@@ -1,24 +1,18 @@
+import './global.css'
 import ReactDOM from 'react-dom/client'
 import App from './App'
-import { ChakraProvider, extendTheme } from '@chakra-ui/react'
+import { ChakraProvider, createSystem, defaultConfig } from '@chakra-ui/react'
 
 import { SelectedPackProvider } from '~/context/SelectedPack'
+import AppToaster from '~/components/AppToaster'
 
-const theme = extendTheme({
-  styles: {
-    global: {
-      body: {
-        backgroundColor: '#222',
-        overflowY: { lg: 'hidden' }
-      }
-    }
-  }
-})
+const system = createSystem(defaultConfig)
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
-  <ChakraProvider theme={theme}>
+  <ChakraProvider value={system}>
     <SelectedPackProvider>
       <App />
+      <AppToaster />
     </SelectedPackProvider>
   </ChakraProvider>
 )
