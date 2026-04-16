@@ -11,7 +11,7 @@ const cardSideStyles = css`
 
 export const CardContainer = styled(Flex, {
   shouldForwardProp: prop => prop !== 'shouldCardBeFlipped'
-})`
+})<{ shouldCardBeFlipped?: boolean }>`
   margin: 0 auto;
   position: relative;
   transform-style: preserve-3d;

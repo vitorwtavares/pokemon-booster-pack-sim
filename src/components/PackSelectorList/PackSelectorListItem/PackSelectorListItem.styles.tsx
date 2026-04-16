@@ -3,7 +3,7 @@ import styled from '@emotion/styled'
 
 export const LogoContainer = styled(Flex, {
   shouldForwardProp: prop => prop !== 'isSelectedPack'
-})`
+})<{ isSelectedPack?: boolean }>`
   width: 100%;
   height: 100px;
   min-height: 100px;
