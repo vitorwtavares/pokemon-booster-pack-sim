@@ -3,8 +3,8 @@ import ReactDOM from 'react-dom/client'
 import App from './App'
 import { ChakraProvider, createSystem, defaultConfig } from '@chakra-ui/react'
 
-import { SelectedPackProvider } from '~/context/SelectedPack'
-import AppToaster from '~/components/AppToaster'
+import { SelectedPackProvider } from '@/context/SelectedPack'
+import AppToaster from '@/components/AppToaster'
 
 const system = createSystem(defaultConfig)
 

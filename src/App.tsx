@@ -1,14 +1,14 @@
 import { useState, useContext } from 'react'
 
-import { CardPack, Header, Credits } from '~/components'
+import { CardPack, Header, Credits } from '@/components'
 
-import { getCards } from '~/services/requests'
-import { SelectedPackContext } from '~/context/SelectedPack'
+import { getCards } from '@/services/requests'
+import { SelectedPackContext } from '@/context/SelectedPack'
 
-import { CARDS_PER_PACK } from '~/utils/constants'
-import { getRandomCardIds } from '~/utils/getRandomCardIds'
+import { CARDS_PER_PACK } from '@/utils/constants'
+import { getRandomCardIds } from '@/utils/getRandomCardIds'
 
-import * as S from '~/App.styles'
+import * as S from '@/App.styles'
 
 const App = () => {
   const { selectedPack } = useContext(SelectedPackContext)

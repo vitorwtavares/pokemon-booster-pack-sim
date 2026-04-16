@@ -1,7 +1,7 @@
 import { Box, Button, Image, Input } from '@chakra-ui/react'
 import styled from '@emotion/styled'
 
-import { DESKTOP_HEADER_HEIGHT } from '~/utils/constants'
+import { DESKTOP_HEADER_HEIGHT } from '@/utils/constants'
 
 export const HeaderContainer = styled(Box)`
   width: 100%;

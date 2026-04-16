@@ -1,8 +1,8 @@
 import { Tooltip } from '@chakra-ui/react'
 import { FC, useContext } from 'react'
-import { SelectedPackContext } from '~/context/SelectedPack'
-import { Pack } from '~/types/api'
-import { toaster } from '~/utils/toaster'
+import { SelectedPackContext } from '@/context/SelectedPack'
+import { Pack } from '@/types/api'
+import { toaster } from '@/utils/toaster'
 
 import * as S from './PackSelectorListItem.styles'
 

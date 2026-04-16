@@ -2,7 +2,7 @@ import { createContext } from 'react'
 import {
   DEFAULT_SELECTED_BOOSTER_PACK_ID,
   DEFAULT_SELECTED_BOOSTER_PACK_CARDS_AMOUNT
-} from '~/utils/constants'
+} from '@/utils/constants'
 
 interface SelectedPack {
   id: string
