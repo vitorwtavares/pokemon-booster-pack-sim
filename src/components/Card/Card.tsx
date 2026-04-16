@@ -1,12 +1,13 @@
 import { FC } from 'react'
 import Tilt from 'react-parallax-tilt'
 
-import cardBack from '~/assets/card-back.png'
+import cardBack from '@/assets/card-back.png'
+import { Card as CardType } from '@/types/api'
 
 import * as S from './Card.styles'
 
 interface CardProps {
-  card: any
+  card: CardType
   isCardFlipped: boolean
 }
 

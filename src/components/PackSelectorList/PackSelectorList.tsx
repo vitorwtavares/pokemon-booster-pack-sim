@@ -2,13 +2,13 @@ import { FC, useCallback, useEffect, useMemo, useState } from 'react'
 import { Plus } from 'lucide-react'
 import { Waypoint } from 'react-waypoint'
 
-import { getBoosterPacks } from '~/services/requests'
-import { Pack } from '~/types/api'
+import { getBoosterPacks } from '@/services/requests'
+import { Pack } from '@/types/api'
 import {
   DEFAULT_PACKS_PAGE_SIZE,
   DEFAULT_PACKS_LAST_PAGE
-} from '~/utils/constants'
-import { excludedPacksNamesList } from '~/utils/excludedPacksNamesList'
+} from '@/utils/constants'
+import { excludedPacksNamesList } from '@/utils/excludedPacksNamesList'
 
 import { PackSelectorListItem } from './PackSelectorListItem'
 
@@ -47,7 +47,7 @@ const PackSelectorList: FC<PackSelectorListProps> = ({
           ...(searchTerm && { q: `name:${searchTerm}` })
         })
 
-        isInitial ? setPacks(data) : setPacks([...packs, ...data])
+        setPacks(prev => (isInitial ? data : [...prev, ...data]))
       } catch (err) {
         console.log(err)
       } finally {
@@ -63,14 +63,17 @@ const PackSelectorList: FC<PackSelectorListProps> = ({
 
   useEffect(() => {
     if (packs.length === 0) fetchBoosterPacks(true)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   useEffect(() => {
     if (page > 1) fetchBoosterPacks()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [page])
 
   useEffect(() => {
     if (searchTerm !== null) fetchBoosterPacks(true, true)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchTerm])
 
   if (isLoading && packs.length === 0) {

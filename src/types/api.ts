@@ -9,3 +9,13 @@ export interface Pack {
   name: string
   total: number
 }
+
+interface CardImages {
+  small: string
+  large: string
+}
+
+export interface Card {
+  id: string
+  images: CardImages
+}

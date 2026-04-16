@@ -2,7 +2,7 @@ const generateRandomNumberOnRange = (max: number, min: number = 1) =>
   Math.floor(Math.random() * max + min)
 
 export const getRandomCardIds = (packSize: number, amountOfCards: number) => {
-  let randomIds: number[] = []
+  const randomIds: number[] = []
 
   while (randomIds.length < amountOfCards) {
     const randomNumber = generateRandomNumberOnRange(packSize)

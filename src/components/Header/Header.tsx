@@ -4,15 +4,15 @@ import {
   useDisclosure
 } from '@chakra-ui/react'
 import { useRef, useState } from 'react'
-import pokeball from '~/assets/pokeball.png'
-import { PackSelectorList } from '~/components'
+import pokeball from '@/assets/pokeball.png'
+import { PackSelectorList } from '@/components'
 
 import * as S from './Header.styles'
 
 const Header = () => {
   const { open, onOpen, onClose } = useDisclosure()
 
-  const selectPackButtonRef = useRef<any>(null)
+  const selectPackButtonRef = useRef<HTMLButtonElement>(null)
 
   const [searchTerm, setSearchTerm] = useState<string | null>(null)
 

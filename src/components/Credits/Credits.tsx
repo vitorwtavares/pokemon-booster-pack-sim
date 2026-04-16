@@ -3,7 +3,6 @@ import {
   CloseButton,
   useDisclosure,
   Link,
-  ListItem,
   List
 } from '@chakra-ui/react'
 

@@ -1,10 +1,11 @@
 import { FC } from 'react'
-import { Card } from '~/components'
+import { Card } from '@/components'
+import { Card as CardType } from '@/types/api'
 
 import * as S from './CardPack.styles'
 
 interface CardPackProps {
-  cards?: Array<any>
+  cards?: CardType[]
   isCardFlipped: boolean
 }
 

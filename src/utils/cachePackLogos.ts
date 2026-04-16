@@ -1,4 +1,5 @@
 import { Dispatch, SetStateAction } from 'react'
+import { Pack } from '@/types/api'
 
 export const getCachedPackLogos = (
   boosterPackSelected: string,
@@ -17,7 +18,7 @@ export const getCachedPackLogos = (
   return false
 }
 
-export const setCachedPackLogos = (data: any) => {
+export const setCachedPackLogos = (data: Pack) => {
   localStorage.setItem(
     'selected-pack',
     JSON.stringify({ packId: data.id, packLogo: data.images.logo })
