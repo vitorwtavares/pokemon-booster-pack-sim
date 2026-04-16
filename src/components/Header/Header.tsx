@@ -16,7 +16,7 @@ import * as S from './Header.styles'
 const Header = () => {
   const { isOpen, onOpen, onClose } = useDisclosure()
 
-  const selectPackButtonRef = useRef<any>()
+  const selectPackButtonRef = useRef<any>(null)
 
   const [searchTerm, setSearchTerm] = useState<string | null>(null)
 
