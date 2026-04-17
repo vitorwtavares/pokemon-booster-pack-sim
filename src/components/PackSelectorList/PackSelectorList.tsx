@@ -1,13 +1,9 @@
-import { FC, useCallback, useEffect, useMemo, useState } from 'react'
+import { FC } from 'react'
 import { Plus } from 'lucide-react'
 import { Waypoint } from 'react-waypoint'
 
-import { getBoosterPacks } from '@/services/requests'
+import { useBoosterPacksQuery } from '@/hooks/useBoosterPacksQuery'
 import { Pack } from '@/types/api'
-import {
-  DEFAULT_PACKS_PAGE_SIZE,
-  DEFAULT_PACKS_LAST_PAGE
-} from '@/utils/constants'
 import { excludedPacksNamesList } from '@/utils/excludedPacksNamesList'
 
 import { PackSelectorListItem } from './PackSelectorListItem'
@@ -23,60 +19,17 @@ const PackSelectorList: FC<PackSelectorListProps> = ({
   onClose,
   searchTerm
 }) => {
-  const [isLoading, setIsLoading] = useState(false)
-  const [packs, setPacks] = useState<Pack[]>([])
-  const [page, setPage] = useState(1)
+  const {
+    data,
+    fetchNextPage,
+    hasNextPage,
+    isFetching,
+    isFetchingNextPage
+  } = useBoosterPacksQuery(searchTerm)
 
-  const shouldFetchMore = useMemo(
-    () =>
-      page < DEFAULT_PACKS_LAST_PAGE && packs.length >= DEFAULT_PACKS_PAGE_SIZE,
-    [page, packs.length]
-  )
+  const packs = data?.pages.flat() ?? []
 
-  const fetchBoosterPacks = useCallback(
-    async (
-      isInitial: boolean = false,
-      hasSearchTermChanged: boolean = false
-    ) => {
-      try {
-        setIsLoading(true)
-        const { data } = await getBoosterPacks({
-          page: hasSearchTermChanged ? 1 : page,
-          pageSize: DEFAULT_PACKS_PAGE_SIZE,
-          select: 'id,images,name,total',
-          ...(searchTerm && { q: `name:${searchTerm}` })
-        })
-
-        setPacks(prev => (isInitial ? data : [...prev, ...data]))
-      } catch (err) {
-        console.log(err)
-      } finally {
-        setTimeout(() => setIsLoading(false), 100)
-      }
-    },
-    [page, searchTerm]
-  )
-
-  const handleEnterWaypoint = () => {
-    setPage(page + 1)
-  }
-
-  useEffect(() => {
-    if (packs.length === 0) fetchBoosterPacks(true)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
-
-  useEffect(() => {
-    if (page > 1) fetchBoosterPacks()
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [page])
-
-  useEffect(() => {
-    if (searchTerm !== null) fetchBoosterPacks(true, true)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [searchTerm])
-
-  if (isLoading && packs.length === 0) {
+  if (isFetching && packs.length === 0) {
     return (
       <S.SpinnerContainer>
         <S.CustomSpinner />
@@ -84,26 +37,29 @@ const PackSelectorList: FC<PackSelectorListProps> = ({
     )
   }
 
-  if (packs.length >= 1) {
-    return (
-      <S.InnerContainer>
-        {packs
-          ?.filter(p => !excludedPacksNamesList.includes(p.name))
-          ?.map((pack: Pack) => (
-            <PackSelectorListItem pack={pack} key={pack.id} onClose={onClose} />
-          ))}
-        {!isLoading && shouldFetchMore && (
-          <S.WaypointContainer>
-            <Waypoint onEnter={handleEnterWaypoint}>
-              {isLoading ? <S.CustomSpinner /> : <Plus size={16} />}
-            </Waypoint>
-          </S.WaypointContainer>
-        )}
-      </S.InnerContainer>
-    )
-  }
+  if (packs.length === 0) return null
 
-  return null
+  return (
+    <S.InnerContainer>
+      {packs
+        .filter(p => !excludedPacksNamesList.includes(p.name))
+        .map((pack: Pack) => (
+          <PackSelectorListItem pack={pack} key={pack.id} onClose={onClose} />
+        ))}
+      {hasNextPage && !isFetchingNextPage && (
+        <S.WaypointContainer>
+          <Waypoint onEnter={() => fetchNextPage()}>
+            <Plus size={16} />
+          </Waypoint>
+        </S.WaypointContainer>
+      )}
+      {isFetchingNextPage && (
+        <S.WaypointContainer>
+          <S.CustomSpinner />
+        </S.WaypointContainer>
+      )}
+    </S.InnerContainer>
+  )
 }
 
 export default PackSelectorList

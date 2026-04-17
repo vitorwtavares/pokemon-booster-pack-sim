@@ -1,42 +1,31 @@
-import { useState, useContext } from 'react'
+import { useContext, useState } from 'react'
 
 import { CardPack, Header, Credits } from '@/components'
 
-import { getCards } from '@/services/requests'
 import { SelectedPackContext } from '@/context/SelectedPack'
+import { usePackCardsQuery } from '@/hooks/usePackCardsQuery'
 
 import { CARDS_PER_PACK } from '@/utils/constants'
-import { getRandomCardIds } from '@/utils/getRandomCardIds'
 
 import * as S from '@/App.styles'
 
+const EMPTY_CARDS = Array(CARDS_PER_PACK).fill(undefined)
+
 const App = () => {
   const { selectedPack } = useContext(SelectedPackContext)
-
-  const [cards, setCards] = useState(Array(CARDS_PER_PACK).fill(undefined))
   const [isCardFlipped, setIsCardFlipped] = useState(false)
-  const [isLoading, setIsLoading] = useState(false)
+
+  const { data: cards, refetch, isFetching } = usePackCardsQuery(selectedPack.id)
+
+  const showFlipped = isCardFlipped && !!cards
 
   const handleClick = async () => {
-    if (isCardFlipped) setIsCardFlipped(false)
+    if (showFlipped) setIsCardFlipped(false)
 
-    try {
-      setIsLoading(true)
+    const result = await refetch()
 
-      const randomIds = getRandomCardIds(selectedPack.total, CARDS_PER_PACK)
-
-      const { data } = await getCards({
-        q: `set.id:${selectedPack.id} ${randomIds}`
-      })
-
-      setCards(data)
-      setTimeout(() => {
-        setIsCardFlipped(true)
-        setIsLoading(false)
-      }, 500)
-    } catch (err) {
-      console.log(err)
-      setIsLoading(false)
+    if (result.data) {
+      setTimeout(() => setIsCardFlipped(true), 500)
     }
   }
 
@@ -44,10 +33,10 @@ const App = () => {
     <S.HeaderAndContentContainer>
       <Header />
       <S.ContentWrapper>
-        <S.OpenPackButton onClick={handleClick} loading={isLoading}>
-          {isCardFlipped ? 'Open another pack' : 'Open pack'}
+        <S.OpenPackButton onClick={handleClick} loading={isFetching}>
+          {showFlipped ? 'Open another pack' : 'Open pack'}
         </S.OpenPackButton>
-        <CardPack cards={cards} isCardFlipped={isCardFlipped} />
+        <CardPack cards={cards ?? EMPTY_CARDS} isCardFlipped={showFlipped} />
         <Credits />
       </S.ContentWrapper>
     </S.HeaderAndContentContainer>
