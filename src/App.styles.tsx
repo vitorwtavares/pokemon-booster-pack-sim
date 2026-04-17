@@ -84,16 +84,16 @@ export const ContentWrapper = styled(Flex)`
   width: 100%;
   gap: 50px;
   max-width: 1024px;
-  height: calc(100vh - ${DESKTOP_HEADER_HEIGHT});
+  min-height: calc(100vh - ${DESKTOP_HEADER_HEIGHT});
   margin: 0 auto;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 0;
+  padding: 40px 0;
 
   @media only screen and (max-width: 991px) {
-    height: 100%;
+    min-height: 100%;
   }
 `
 
