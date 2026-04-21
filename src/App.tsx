@@ -1,6 +1,6 @@
 import { useContext, useState } from 'react'
 
-import { CardPack, Header, Credits } from '@/components'
+import { Backdrop, CardPack, Header, Credits } from '@/components'
 
 import { SelectedPackContext } from '@/context/SelectedPack'
 import { usePackCardsQuery } from '@/hooks/usePackCardsQuery'
@@ -15,7 +15,11 @@ const App = () => {
   const { selectedPack } = useContext(SelectedPackContext)
   const [isCardFlipped, setIsCardFlipped] = useState(false)
 
-  const { data: cards, refetch, isFetching } = usePackCardsQuery(selectedPack.id)
+  const {
+    data: cards,
+    refetch,
+    isFetching,
+  } = usePackCardsQuery(selectedPack.id)
 
   const showFlipped = isCardFlipped && !!cards
 
@@ -31,6 +35,7 @@ const App = () => {
 
   return (
     <S.HeaderAndContentContainer>
+      <Backdrop />
       <Header />
       <S.ContentWrapper>
         <S.OpenPackButton onClick={handleClick} loading={isFetching}>
