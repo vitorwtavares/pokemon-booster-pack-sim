@@ -14,7 +14,11 @@ const PackSelectorList: FC<PackSelectorListItemProps> = ({ pack, onClose }) => {
   const { selectedPack, setSelectedPack } = useContext(SelectedPackContext)
 
   const handleClick = () => {
-    setSelectedPack({ id: pack.id, total: pack.total })
+    setSelectedPack({
+      id: pack.id,
+      total: pack.total,
+      logoUrl: pack.images.logo,
+    })
     onClose()
   }
 
