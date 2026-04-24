@@ -1,8 +1,4 @@
-import {
-  Drawer,
-  CloseButton,
-  useDisclosure
-} from '@chakra-ui/react'
+import { Drawer, CloseButton, useDisclosure } from '@chakra-ui/react'
 import { useRef, useState } from 'react'
 import pokeball from '@/assets/pokeball.png'
 import { PackSelectorList } from '@/components'
@@ -21,8 +17,11 @@ const Header = () => {
       <S.SelectBoosterPackButton onClick={onOpen} ref={selectPackButtonRef}>
         Select booster pack
       </S.SelectBoosterPackButton>
-      <S.HeaderImage src={pokeball} />
-      <Drawer.Root open={open} onOpenChange={e => !e.open && onClose()} placement="start">
+      <Drawer.Root
+        open={open}
+        onOpenChange={(e) => !e.open && onClose()}
+        placement="start"
+      >
         <Drawer.Backdrop />
         <Drawer.Positioner>
           <Drawer.Content background="#222" color="#fff">
@@ -33,8 +32,8 @@ const Header = () => {
             <Drawer.Body overflow="hidden">
               <S.CustomInput
                 placeholder="Search packs..."
-                onBlur={e => setSearchTerm(e.target.value)}
-                onKeyUp={e => {
+                onBlur={(e) => setSearchTerm(e.target.value)}
+                onKeyUp={(e) => {
                   if (e.key === 'Enter') setSearchTerm(e.currentTarget.value)
                 }}
               />
